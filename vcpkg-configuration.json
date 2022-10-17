@@ -1,0 +1,10 @@
+{
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/msvetkin/vcpkg-registry-experiments",
+      "baseline": "a0001f19308c6098720af78416992030f6e0e9dc",
+      "packages": [ "some-qt-lib" ]
+    }
+  ]
+}

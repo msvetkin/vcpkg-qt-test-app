@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "hidden": true
+    },
+    {
+      "name": "vcpkg",
+      "inherits": "default",
+      "toolchainFile": "$env{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/cmake/vcpkg/ports"
+      }
+    },
+    {
+      "name": "qt6",
+      "inherits": "vcpkg",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "/usr/lib/cmake/Qt6"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "vcpkg",
+      "configurePreset": "vcpkg"
+    },
+    {
+      "name": "qt6",
+      "configurePreset": "qt6"
+    }
+  ],
+  "testPresets": [
+  ]
+}
